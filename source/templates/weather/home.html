@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-warning p-3" href="{% url 'home' %}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+          <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Weather</a>
+            </li>
+          </ul>
+          </div>
+      </div>
+    </nav>
+
+  <!-- main content -->
+  <div class="container mx-auto my-5">
+    <h1 class="text-center fw-bold text-md text-decoration-underline mb-5">Find Weather By City</h1>
+    <div class="text-center">
+      <form method="get">
+      <input class="form-control mx-auto w-50" type="text" name="city" id="city" placeholder="Enter City Name...">
+      <input type="submit" class="btn btn-warning fw-semibold btn-mid my-4" value="submit">
+    </form>
+  </div>
+
+  {% if results %}
+
+  <table class="table w-50 mx-auto table-info text-xl mt-5">
+    <thead>
+      <tr>
+        <th colspan="2" class="text-center"><h4>Weather of {{ results.region }}</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Location : </th>
+        <td>{{ results.region }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Day and Time : </th>
+        <td>{{ results.daytime }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Weather : </th>
+        <td>{{ results.weather }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Temperature : </th>
+        <td>{{ results.temp }} °C</td>
+      </tr>
+      <tr>
+        <th scope="row">Precipitation : </th>
+        <td>{{ results.precipitation }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Humidity : </th>
+        <td>{{ results.humidity }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Wind : </th>
+        <td>{{ results.wind }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% endif %}
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
